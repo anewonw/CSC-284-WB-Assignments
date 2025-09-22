@@ -4,8 +4,8 @@ using namespace std;
 
 namespace StudentRecords
 {
-	Student::Student(const int id, string_view name, const int age,
-		Major& major, string_view email)
+	Student::Student(int id, string_view name, int age,
+		string_view major, string_view email)
 		: m_id{ id }
 		, m_name{ name }
 		, m_age{ age }
@@ -22,11 +22,8 @@ namespace StudentRecords
 	{
 		return m_name;
 	}
-	/*void Student::setMajor(Major& major)
-	{
-		m_major = major;
-	}
-	Major& Student::getMajor() const
+
+	const string& Student::getMajor() const
 	{
 		return m_major;
 	}
@@ -45,8 +42,7 @@ namespace StudentRecords
 	int Student::getAge() const
 	{
 		return m_age;
-		}
-		*/
+	}
 	
 	void Student::setID(const int id)
 	{

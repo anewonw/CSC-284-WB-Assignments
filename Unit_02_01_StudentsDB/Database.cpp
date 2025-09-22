@@ -6,50 +6,74 @@ using namespace std;
 namespace StudentRecords {
 
 	// Create new Student object and add to m_students vector
-	Student& Database::addStudent(const int id, std::string_view name, const int age,
-		std::string_view major, std::string_view email)
+	Student& Database::addStudent(int id, string_view name, int age,
+		string_view major, string_view email)
 	{
-		// Use existing major or create new one
-		Student newStudent{ id, name, age, findMajor(major), email };
-
+		findMajor(major);
+		Student newStudent{ id, name, age, major, email };
 		m_students.push_back(newStudent);
 
 		return m_students.back();
 	}
 
-	Student& Database::findID(int id)
+	void Database::findID(int id)
 	{
 		for (auto& student : m_students) {
 			if (student.getID() == id) {
-				return student;
+				println("\nStudent record found : ");
+				printRecord(student);
+				return;
 			}
 		}
-		throw logic_error{ "No record found." };
+		throw logic_error{ "Error - No record found." };
 	}
 
-	Student& Database::findName(string_view name)
+	void Database::findName(string_view name)
 	{
 		for (auto& student : m_students) {
 			if (student.getName() == name) {
-				return student;
+				println("\nStudent record found : ");
+				printRecord(student);
+				return;
 			}
 		}
-		throw logic_error{ "No record found." };
+		throw logic_error{ "Error - No record found." };
+	}
+	void Database::printRecord(Student& student) const
+	{
+		println("\n{:<10}{:<30}{:<10}{:<15}{}", "ID", "Name", "Age", "Major", "Email");
+		println("{}", string(80, '-'));
+		println("{:<10}{:<30}{:<10}{:<15}{}",
+			student.getID(), student.getName(), student.getAge(), student.getMajor(), student.getEmail());
 	}
 
-	void Database::printAllRecords()
+	void Database::printAllRecords() const
 	{
+		println("\n{:<10}{:<30}{:<10}{:<15}{}", "ID", "Name", "Age", "Major", "Email");
+		println("{}", string(80, '-'));
+		for (auto& student : m_students) {
+			println("{:<10}{:30}{:<10}{:<15}{}",
+				student.getID(), student.getName(), student.getAge(), student.getMajor(), student.getEmail());
+		}
 	}
 
-	Major& Database::findMajor(string_view query)
+	void Database::printStudentsByMajor() const
 	{
-		for (auto& major : m_majors) {
+		println("\nStudents by Major: ");
+		for (auto& major : m_majors)
+			println("{}: {}", major.getMajorName(), major.getNumStudents());
+	}
+
+	// Update existing major or create new one
+	void Database::findMajor(string_view query)
+	{
+		for (Major& major : m_majors) {
 			if (query == major.getMajorName()) {
 				major.addStudentToMajor();
-				return major;
+				return;
 			}
-			m_majors.push_back(Major(query));
-			return m_majors.back();
 		}
+		m_majors.push_back(query);
 	}
 }
+

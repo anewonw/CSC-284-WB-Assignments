@@ -5,32 +5,33 @@
 #include <iostream>
 #include <string>
 #include <string_view>
+#include <stdexcept>
 
 using namespace std;
 using namespace StudentRecords;
 
 int displayMenu();
 void add(Database& db);
-void print(Database& db);
 void searchID(Database& db);
 void searchName(Database& db);
-void countMajors(Database& db);
 bool isValidInt(const string& input);
+int getValidInt();
 
 int main()
 {
-	enum class Menu { ADD, PRINT, SEARCH_ID, SEARCH_NAME, COUNT_MAJORS, QUIT };
+	enum class Menu { ADD = 1, PRINT, SEARCH_ID, SEARCH_NAME, COUNT_MAJORS, QUIT };
 	Database studentDB;
 
 	bool done{ false };
 	while (!done) {
-		Menu{ displayMenu() };
-		switch (Menu) {
+		// Cast int choice to Menu
+		Menu choice { static_cast<Menu>(displayMenu())};
+		switch (choice) {
 		case Menu::ADD:
 			add(studentDB);
 			break;
 		case Menu::PRINT:
-			print(studentDB);
+			studentDB.printAllRecords();
 			break;
 		case Menu::SEARCH_ID:
 			searchID(studentDB);
@@ -39,7 +40,7 @@ int main()
 			searchName(studentDB);
 			break;
 		case Menu::COUNT_MAJORS:
-			countMajors(studentDB);
+			studentDB.printStudentsByMajor();
 			break;
 		case Menu::QUIT:
 			println("Exiting program...");
@@ -55,7 +56,6 @@ int main()
 // Show menu and get user choice
 int displayMenu()
 {
-	int choice;
 	println("");
 	println("Student Database");
 	println("-----------------");
@@ -68,72 +68,83 @@ int displayMenu()
 	println("");
 	print("Command: ");
 
-	cin >> choice; cin.ignore(100, '\n');
-
-	return choice;
+	return getValidInt() ;
 }
 
 // Add new student from user information
 void add(Database& db)
 {
-	string id;
-	string name;
-	string age;
-	string major;
-	string email;
-
 	println("New Student");
 
 	print("ID # ");
-	getline(cin, id);
-	// Check id is numeric
-	while (!isValidInt(id)) {
-		println("Error - ID # must be numeric:");
-		getline(cin, id);
-	}
+	int id{ getValidInt() };
+	
+	string name;
 	print("Name: ");
 	getline(cin, name);
 
 	print("Age: ");
-	getline(cin, age);
-	// Check age is numeric
-	while (!isValidInt(age)) {
-		println("Error - Age must be numeric:");
-		getline(cin, age);
-	}
+	int age{ getValidInt() };
+	
+	string major;
 	print("Major: ");
 	getline(cin, major);
 
+	string email;
 	print("Email: ");
 	getline(cin, email);
 
-	db.addStudent(stoi(id), name, stoi(age), major, email);
+	db.addStudent(id, name, age, major, email);
 }
 
-void print()
+void searchID(Database& db)
 {
+	print("ID # ");
+	int id{ getValidInt() };
+	try {
+		db.findID(id);
+	}
+	catch (logic_error ex)
+	{
+		println("{}", ex.what());
+	}
 }
 
-void searchID()
+void searchName(Database& db)
 {
+	string name;
+	print("Name: ");
+	getline(cin, name);
+
+	try {
+		db.findName(name);
+	}
+	catch (logic_error ex)
+	{
+		println("{}", ex.what());
+	}
 }
 
-void searchName()
-{
-}
-
-void countMajorDBs()
-{
-}
-
-// Validate that input string is numeric, return as int
+// Validate that input string is numeric
 bool isValidInt(const string& input)
 {
 	try {
 		if (int number{ stoi(input) })
 			return true;
 	}
-	catch (invalid_argument ex) {
+	catch (exception ex ) {
 		return false;
 	}
+}
+
+// Return int from input string
+int getValidInt()
+{
+	string input;
+	getline(cin, input);
+	while (!isValidInt(input)) {
+		println("Error - Value must be numeric: ");
+		getline(cin, input);
+	}
+	return stoi(input);
 }
