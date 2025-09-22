@@ -1,3 +1,7 @@
+// CSC 284
+// Unit 2, Assignment 1: Student Records Manager
+// Andrew Dasch
+
 #include "Student.h"
 #include "Database.h"
 #include "Major.h"
@@ -148,3 +152,4 @@ int getValidInt()
 	}
 	return stoi(input);
 }
+
