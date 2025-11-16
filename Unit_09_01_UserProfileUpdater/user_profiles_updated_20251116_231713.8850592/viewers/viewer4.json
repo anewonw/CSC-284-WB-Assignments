@@ -1,0 +1,16 @@
+{
+    "email": "zoe.viewer@newcompany.com",
+    "last_login": "2024-09-27",
+    "permissions": [
+        "view_content"
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "enabled"
+        },
+        "theme": "dark"
+    },
+    "role": "viewer",
+    "username": "zoe_viewer"
+}

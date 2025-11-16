@@ -1,0 +1,21 @@
+{
+    "email": "nancy.editor@newcompany.com",
+    "last_login": "2024-10-03",
+    "permissions": [
+        {
+            "granted_at": "2024-9-25",
+            "level": "full",
+            "permission": "edit_content"
+        },
+        "publish_content"
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "disabled"
+        },
+        "theme": "light"
+    },
+    "role": "editor",
+    "username": "nancy_editor"
+}

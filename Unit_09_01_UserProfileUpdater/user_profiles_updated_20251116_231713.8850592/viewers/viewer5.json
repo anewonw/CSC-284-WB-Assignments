@@ -1,0 +1,16 @@
+{
+    "email": "oliver.viewer@newcompany.com",
+    "last_login": "2024-09-26",
+    "permissions": [
+        "view_content"
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "disabled"
+        },
+        "theme": "light"
+    },
+    "role": "viewer",
+    "username": "oliver_viewer"
+}

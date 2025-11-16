@@ -1,0 +1,25 @@
+{
+    "email": "alice.admin@newcompany.com",
+    "last_login": "2024-10-07",
+    "permissions": [
+        {
+            "granted_at": "2024-10-05",
+            "level": "full",
+            "permission": "manage_users"
+        },
+        {
+            "granted_at": "2024-11-05",
+            "level": "read-only",
+            "permission": "access_reports"
+        }
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "disabled"
+        },
+        "theme": "light"
+    },
+    "role": "admin",
+    "username": "alice_admin"
+}

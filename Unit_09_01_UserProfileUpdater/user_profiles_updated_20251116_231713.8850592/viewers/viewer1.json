@@ -1,0 +1,16 @@
+{
+    "email": "dave.viewer@newcompany.com",
+    "last_login": "2024-09-30",
+    "permissions": [
+        "view_content"
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "disabled"
+        },
+        "theme": "dark"
+    },
+    "role": "viewer",
+    "username": "dave_viewer"
+}

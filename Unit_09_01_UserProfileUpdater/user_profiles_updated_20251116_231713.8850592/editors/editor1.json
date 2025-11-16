@@ -1,0 +1,21 @@
+{
+    "email": "carol.editor@newcompany.com",
+    "last_login": "2024-10-05",
+    "permissions": [
+        {
+            "granted_at": "2024-9-25",
+            "level": "full",
+            "permission": "edit_content"
+        },
+        "publish_content"
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "enabled"
+        },
+        "theme": "light"
+    },
+    "role": "editor",
+    "username": "carol_editor"
+}

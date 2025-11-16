@@ -1,0 +1,30 @@
+{
+    "email": "john.admin@newcompany.com",
+    "last_login": "2024-10-08",
+    "permissions": [
+        {
+            "granted_at": "2024-10-05",
+            "level": "full",
+            "permission": "manage_users"
+        },
+        {
+            "granted_at": "2024-11-05",
+            "level": "read-only",
+            "permission": "access_reports"
+        },
+        {
+            "granted_at": "2024-9-25",
+            "level": "full",
+            "permission": "edit_content"
+        }
+    ],
+    "preferences": {
+        "notifications": {
+            "since": "2024-10-01",
+            "status": "enabled"
+        },
+        "theme": "dark"
+    },
+    "role": "admin",
+    "username": "john_admin"
+}
